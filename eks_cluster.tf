@@ -26,36 +26,30 @@ module "eks" {
 
  eks_managed_node_groups = {
    "worker-group-1" = {
-     min_size     = 1
+     min_size     = 2
      max_size     = 3
-     desired_size = 1
+     desired_size = 2
      instance_type = ["t2.small"]
       vpc_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
    }
 
-    "worker-group-2" = {
-     min_size     = 1
-     max_size     = 3
-     desired_size = 1
-     instance_type = ["t2.small"]
-      vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-   }
-
+  #   "worker-group-2" = {
+  #    min_size     = 1
+  #    max_size     = 3
+  #    desired_size = 1
+  #    instance_type = ["t2.small"]
+  #     vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+  #  }
  }
 
 depends_on = [
-    module.vpc.name
+    module.vpc.name,
+    module.vpc.aws_subnet,
+    module.vpc.aws_route_table,
+    module.vpc.aws_nat_gateway
   ]
 
 
 }
 
 
-
-data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_id
-}
-
-data "aws_eks_cluster_auth" "cluster" {
-  name = module.eks.cluster_id
-}

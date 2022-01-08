@@ -4,7 +4,7 @@ locals {
   vpc_name = "eks_vpc"
   vpc_tags = {
    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
-    Name = "myVPC"
+    Name = "eks-vpc"
   }
   common_tags = {
          
