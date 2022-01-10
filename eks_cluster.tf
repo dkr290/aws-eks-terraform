@@ -1,11 +1,15 @@
 
 # EKS cluster creation, change version if needed in vars.tf and also cluster name can be changed
 # Relying on some external modules to help with the EKS cluster
+
+
 module "eks" {
+    
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster_name
   cluster_version = var.kubernetes_version
   subnet_ids         = module.vpc.private_subnets
+  version= "18.0.5"
 
   tags = {
     Environment = var.environment
@@ -41,15 +45,12 @@ module "eks" {
   #     vpc_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
   #  }
  }
-
-depends_on = [
-    module.vpc.name,
-    module.vpc.aws_subnet,
-    module.vpc.aws_route_table,
-    module.vpc.aws_nat_gateway
-  ]
-
-
+ 
+ 
 }
+
+
+
+
 
 

@@ -49,6 +49,8 @@ database_subnet_tags = {
       "kubernetes.io/cluster/${var.cluster_name}" = "shared"
       "kubernetes.io/role/elb"                      = "1"
   }
+
+    
 }
 
 
