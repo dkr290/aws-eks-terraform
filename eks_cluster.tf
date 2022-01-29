@@ -9,7 +9,7 @@ module "eks" {
   cluster_name    = var.cluster_name
   cluster_version = var.kubernetes_version
   subnet_ids         = module.vpc.private_subnets
-  version= "18.0.5"
+  version= "18.2.3"
 
   tags = {
     Environment = var.environment
@@ -33,7 +33,7 @@ module "eks" {
      min_size     = 2
      max_size     = 3
      desired_size = 2
-     instance_type = ["t2.small"]
+     instance_types = ["t2.small"]
       vpc_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
    }
 
