@@ -31,7 +31,7 @@ module "eks" {
  eks_managed_node_groups = {
    "worker-group-1" = {
      min_size     = 2
-     max_size     = 3
+     max_size     = 10
      desired_size = 2
      instance_types = ["t2.small"]
       vpc_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
