@@ -7,17 +7,17 @@ metadata:
   region: eu-central-1
 
 vpc:
-  id: "vpc-0024a8fede74e4be2"  # (optional, must match VPC ID used for each subnet below)
+  id: "vpc-045a5d97a6952adfd"  # (optional, must match VPC ID used for each subnet below)
   cidr: "10.0.0.0/16"       # (optional, must match CIDR used by the given VPC)
   subnets:
     # must provide 'private' and/or 'public' subnets by availibility zone as shown
     private:
       eu-central-1a:
-        id: "subnet-0600493c440c53a34"
+        id: "subnet-06ba7f84fb4fd3066"
         cidr: "10.0.1.0/24" # (optional, must match CIDR used by the given subnet)
 
       eu-central-1b:
-        id: "subnet-030b26dc2f5938513"
+        id: "subnet-0eaa996e936cb6a46"
         cidr: "10.0.2.0/24"  # (optional, must match CIDR used by the given subnet)
 
 nodeGroups:
@@ -29,9 +29,24 @@ nodeGroups:
     volumeSize: 10
     volumeType: gp2
     desiredCapacity: 2
+    ssh:
+      publicKeyName: eks-course1
     iam:
       withAddonPolicies:
         autoScaler: true
     privateNetworking: true
+
+
+  # - name: ng-mixed
+  #   minSize: 2
+  #   maxSize: 4
+  #   instancesDistribution:
+  #     maxPrice: 0.2
+  #     instanceTypes: ["t2.small","t3.small"]
+  #     onDemandBaseCapacity: 0
+  #     onDEmandPercentageAboveBaseCapacity: 50
+  #   privateNetworking: true
+  #   ssh:
+  #     publicKeyName: eks-course1
   
     
