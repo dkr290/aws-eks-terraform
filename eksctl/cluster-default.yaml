@@ -24,7 +24,7 @@ nodeGroups:
   - name: ng-default
     instanceType: t2.small
     instanceName: ng-default-node
-    minSize: 2
+    minSize: 1
     maxSize: 4
     volumeSize: 10
     volumeType: gp2
@@ -34,6 +34,9 @@ nodeGroups:
     iam:
       withAddonPolicies:
         autoScaler: true
+    labels:
+      nodegroup-type: default
+      instance-type: onDemand
     privateNetworking: true
 
 
